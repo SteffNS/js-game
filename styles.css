@@ -1,0 +1,87 @@
+body {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: lightgrey;
+}
+h1, h2, h3 {
+    text-align: center;
+}
+#current-player-move{
+    margin-left: 7rem;
+    display: inline;
+}
+#splash{
+    height: 752px;
+    position: relative;
+    background-color: rgba(93, 255, 147, 0.616);
+    text-align: center;
+}
+#splash h2, #splash h3 {
+    padding: 2rem;
+}
+#difficulty {
+    padding: 1.2rem;
+}
+#difficulty label {
+    padding: 0 1.2rem;
+}
+#start-game {
+    margin-top: 6rem;
+}
+#game-wrapper{
+    height:870px;
+    width: 800px;
+    border: 1px solid black;
+    margin: 0 auto;
+}
+#game-header{
+    background-color: #ffaeb2;
+    height: 115px;
+}
+#player-fields {
+    display: block;
+    text-align: center;
+}
+#player-fields div{
+    display: inline-block;
+}
+#player-1-score{
+    margin-right: .5rem;
+}
+/* #player-fields:first-child {
+    padding: 1rem;
+} */
+.grid-square {
+    background-color: white;
+    border: 1px solid black;
+    width: 133px;
+    height: 125.5px;
+}
+.main-grid {
+    float: left;
+}
+.player1colour {
+    background-color: red;
+}
+.player2colour {
+    background-color: blue;
+}
+/* .player1hover {
+    background-color: teal;
+    opacity: 50%;
+}
+.player2hover {
+    background-color: green;
+    opacity: 50%;
+} */
+
+#end-screen{
+    background-color: rgb(117, 187, 245);
+    height: 752px;
+    text-align: center;
+}
+#end-screen h3{
+    padding: 2rem;
+}
+#end-score {
+    padding-bottom: 2rem;
+}

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+    <title>Four Score Game</title>
+</head>
+<h1>Four Score Game</h1>
+<body>
+    <!-- Game Wrapper that holds everything -->
+    <section id='game-wrapper'>
+
+        <!-- Game Header (scores, names, info button) -->
+        <div id='game-header'>
+            <h2>Four Score</h2>
+            <button class='btn btn-danger' id='btn-quit'>Quit</button>
+            <button id='infoBtn' class='btn btn-info' data-toggle ='modal' data-target = '#myModal' aria-hidden='true' data-backdrop="false">Info</button>
+            <button id = 'infoBtn2' class='btn btn-info' data-toggle='modal' data-target='#infoModal' data-backdrop="false">Info</button>
+            <h3 id='current-player-move'>The current player's move is: <span id='current-move'></span></h3>
+                <div id='player-fields'></div>
+        </div>
+
+        <!-- Splash Screen -->
+        <div id='splash' class='screen'>
+            <h2>Game Setup</h2>
+            <label for="playerOneName">Player 1 Username</label>
+            <input type='text' id='playerOneName' placeholder='Player1' required></input>
+            <button class='btn btn-primary' id='player-1-info-submit'>Submit</button>
+            <label for="playerTwoName">Player 2 Username</label>
+            <input type='text' id='playerTwoName' placeholder='Player2' required></input>
+            <button class='btn btn-primary' id='player-2-info-submit'>Submit</button>
+            <h3>Difficulty Setting</h3>
+            <div id='difficulty'>
+                <label for="difficulty-standard" class='btn btn-outline-dark'>
+                    <input type="radio" id='difficulty-standard' name= 'challenge' > Standard
+                </label>
+                <label for="difficulty-timed" class='btn btn-outline-dark'>
+                    <input type="radio" id='difficulty-timed' name = 'challenge' > Timed Difficulty
+                </label>
+            </div>
+            <h3>Ready to play?</h3>
+            <button id='start-game' class='btn btn-success'>Play Game</button>
+        </div>
+
+        <!-- Game Screen -->
+        <div id='game-screen' class='screen' style='display: none;'>
+            <div id='game-squares'>
+
+                <!-- Divs that are for grid columns -->
+                <!-- Within each div is more divs that are the actual squares, spread out in a row -->
+                <div class='main-grid' data-column = '0'>
+                    <div data-row = '0' class="grid-square"></div>
+                    <div data-row = '1' class="grid-square"></div>
+                    <div data-row = '2' class="grid-square"></div>
+                    <div data-row = '3' class="grid-square"></div>
+                    <div data-row = '4' class="grid-square"></div>
+                    <div data-row = '5' class="grid-square"></div>
+                </div>
+                <div class='main-grid' data-column = '1'>
+                    <div data-row = '0' class="grid-square"></div>
+                    <div data-row = '1' class="grid-square"></div>
+                    <div data-row = '2' class="grid-square"></div>
+                    <div data-row = '3' class="grid-square"></div>
+                    <div data-row = '4' class="grid-square"></div>
+                    <div data-row = '5' class="grid-square"></div>
+                </div>
+                <div class='main-grid' data-column = '2'>
+                    <div data-row = '0' class="grid-square"></div>
+                    <div data-row = '1' class="grid-square"></div>
+                    <div data-row = '2' class="grid-square"></div>
+                    <div data-row = '3' class="grid-square"></div>
+                    <div data-row = '4' class="grid-square"></div>
+                    <div data-row = '5' class="grid-square"></div>
+                </div>
+                <div class='main-grid' data-column = '3'>
+                    <div data-row = '0' class="grid-square"></div>
+                    <div data-row = '1' class="grid-square"></div>
+                    <div data-row = '2' class="grid-square"></div>
+                    <div data-row = '3' class="grid-square"></div>
+                    <div data-row = '4' class="grid-square"></div>
+                    <div data-row = '5' class="grid-square"></div>
+                </div>
+                <div class='main-grid' data-column = '4'>
+                    <div data-row = '0' class="grid-square"></div>
+                    <div data-row = '1' class="grid-square"></div>
+                    <div data-row = '2' class="grid-square"></div>
+                    <div data-row = '3' class="grid-square"></div>
+                    <div data-row = '4' class="grid-square"></div>
+                    <div data-row = '5' class="grid-square"></div>
+                </div>
+                <div class='main-grid' data-column = '5'>
+                    <div data-row = '0' class="grid-square"></div>
+                    <div data-row = '1' class="grid-square"></div>
+                    <div data-row = '2' class="grid-square"></div>
+                    <div data-row = '3' class="grid-square"></div>
+                    <div data-row = '4' class="grid-square"></div>
+                    <div data-row = '5' class="grid-square"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- End Screen -->
+        <div id='end-screen' class='screen' style='display:none;'>
+            <h3>Game Over</h3>
+            <p id='end-score'>The current scores are: </p>
+            <button id='play-again' class='btn btn-success'>Play Again</button>
+            <button id='quit-2' class='btn btn-danger'>Quit</button>
+        </div>
+    </section>
+
+
+    
+    <!-- Game Setup Information Modal -->
+    <div class='modal fade' id='myModal' role='dialog'>
+        <div class='modal-dialog modal-dialog-centered' role='document'>
+            <div class='modal-content'>
+                <div class='modal-header'>
+                    <h3 class='modal-title'>Setup Info</h3>
+                    <button class='close closeBtn' data-dismiss ='modal'>&times;</button>
+                </div>
+                <div class='modal-body'>
+                    <p>To start, two players will input their names into the two player forms. Player one is red, player two is blue.</p>
+                    <p>The goal is to line up 4 squares in a row. This can be done vertically, horizontally, and diagnoally. The first to 4 wins. Standard difficulty setting has no timer for player turns. Timed difficulty sets a timer of 5 seconds for player turns.</p>
+                    <p>There will be some text at the top indicating who's turn it is.</p>
+                </div>
+                <div class='modal-footer'>
+                    <button class='btn btn-info' data-target ='#infoModal' data-toggle = 'modal' data-dismiss='modal' data-backdrop="false" >Game Rules Info</button>
+                    <button class='btn btn-secondary closeBtn' data-dismiss = 'modal'>Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- More info modal from more info button -->
+    <div class='modal fade' id='infoModal' role='dialog'>
+        <div class='modal-dialog modal-dialog-centered' role='document'>
+            <div class='modal-content'>
+                <div class='modal-header'>
+                    <h3>Game Info</h3>
+                    <button class='close closeBtn' data-dismiss='modal'>&times;</button>
+                </div>
+                <div class='modal-body'>
+                    <p>The Game Objective:</p>
+                    <p>The goal is to line up 4 squares in a row. This can be done vertically, horizontally, and diagnoally. The first to 4 wins.</p>
+                    <p>Player one is red, player two is blue.</p>
+                </div>
+                <div class='modal-footer'>
+                    <button class='btn btn-secondary closeBtn' data-dismiss='modal'>Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+<!-- <audio id='win-sound' src="audio/bababooey.mp3"  loop='false'></audio> -->
+<audio id="win-sound" loop="false">
+    <source src="audio/bababooey.mp3" type="audio/mpeg">
+</audio>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="logic.js"></script>
+
+</html>
